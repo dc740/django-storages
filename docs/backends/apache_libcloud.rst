@@ -153,6 +153,13 @@ set::
 
 Your default Libcloud provider will be used as the file store.
 
+``LIBCLOUD_CLOUDFILES_URL_EXPIRES``
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The number of seconds that a generated URL is valid for. Set to ``None`` (default)
+for the URL to never expire. This setting is for CLOUDFILES only, since this
+backend calls a custom method for this functionality.
+
 Certificate authorities
 -----------------------
 
