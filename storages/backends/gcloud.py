@@ -15,9 +15,9 @@ from storages.utils import (
 )
 
 try:
+    from google.cloud.exceptions import NotFound
     from google.cloud.storage import Blob, Client
     from google.cloud.storage.blob import _quote
-    from google.cloud.exceptions import NotFound
 except ImportError:
     raise ImproperlyConfigured("Could not load Google Cloud Storage bindings.\n"
                                "See https://github.com/GoogleCloudPlatform/gcloud-python")
@@ -101,7 +101,6 @@ class GoogleCloudStorage(BaseStorage):
             "bucket_name": setting('GS_BUCKET_NAME'),
             "custom_endpoint": setting('GS_CUSTOM_ENDPOINT', None),
             "location": setting('GS_LOCATION', ''),
-            "auto_create_acl": setting('GS_AUTO_CREATE_ACL', 'projectPrivate'),
             "default_acl": setting('GS_DEFAULT_ACL'),
             "expiration": setting('GS_EXPIRATION', timedelta(seconds=86400)),
             "file_overwrite": setting('GS_FILE_OVERWRITE', True),

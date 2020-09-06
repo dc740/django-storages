@@ -15,9 +15,9 @@ Use pip to install from PyPI::
 Authentication
 --------------
 By default, this library will try to use the credentials associated with the
-current Google Cloud infrastrcture/environment for authentication. 
+current Google Cloud infrastrcture/environment for authentication.
 
-In most cases, the default service accounts are not sufficient to read/write and sign files in GCS, you so you will need to create a dedicated service account: 
+In most cases, the default service accounts are not sufficient to read/write and sign files in GCS, you so you will need to create a dedicated service account:
 
 1. Create a service account. (`Google Getting Started Guide <https://cloud.google.com/docs/authentication/getting-started>`__)
 
@@ -45,7 +45,7 @@ Set the default storage and bucket name in your settings.py file:
     DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
     GS_BUCKET_NAME = 'YOUR_BUCKET_NAME_GOES_HERE'
 
-To allow ``django-admin.py`` collectstatic to automatically put your static files in your bucket set the following in your settings.py::
+To allow ``django-admin`` collectstatic to automatically put your static files in your bucket set the following in your settings.py::
 
     STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
@@ -96,18 +96,6 @@ back to the default inferred from the environment
         "path/to/credentials.json"
     )
 
-``GS_AUTO_CREATE_ACL`` (optional, default is ``projectPrivate``)
-
-ACL used when creating a new bucket, from the
-`list of predefined ACLs <https://cloud.google.com/storage/docs/access-control/lists#predefined-acl>`_.
-(A "JSON API" ACL is preferred but an "XML API/gsutil" ACL will be
-translated.)
-
-Note that the ACL you select must still give the service account
-running the GCE backend to have OWNER permission on the bucket. If
-you're using the default service account, this means you're restricted
-to the ``projectPrivate`` ACL.
-
 ``GS_DEFAULT_ACL`` (optional, default is None)
 
 ACL used when creating a new blob, from the
@@ -126,7 +114,7 @@ a signed (expiring) url.
    the bucket to public or set the file permissions directly in GCS to public.
 
 .. note::
-    When using this setting, make sure you have ``fine-grained`` access control enabled on your bucket, 
+    When using this setting, make sure you have ``fine-grained`` access control enabled on your bucket,
     as opposed to ``Uniform`` access control, or else, file  uploads will return with HTTP 400.
 
 ``GS_FILE_CHARSET`` (optional)
